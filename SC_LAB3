@@ -1,0 +1,15 @@
+import random
+
+def fitness(x):
+    return x**2
+
+population =[]
+for _ in range(5):
+  population.append(random.randint(0, 31))
+print("Initial Population:", population)
+
+for _ in range(5):  # generations
+    fitness_vals = [fitness(x) for x in population]
+    parents = sorted(zip(population, fitness_vals), key=lambda x: x[1], reverse=True)[:2]
+    offspring = [random.randint(0, 31) for _ in range(2)]
+    population = [p[0] for p in parents] + offspring
